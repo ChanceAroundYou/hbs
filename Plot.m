@@ -96,8 +96,11 @@ classdef Plot
             y(y<0) = y(y<0)+2*pi;
             Plot.pri_scatter(x, y);
             axis([0 2*pi 0 2*pi]);
-            axis equal tight;
-            box on;
+            xticks(0:0.5*pi:2*pi);
+            yticks(0:0.5*pi:2*pi);
+            xticklabels({'0','0.5\pi','\pi','1.5\pi','2\pi'});
+            yticklabels({'0','0.5\pi','\pi','1.5\pi','2\pi'});
+            set(gcf,'color','w');
         end
         
         function [x, y] = welding_filled(outer_points, inner_points)

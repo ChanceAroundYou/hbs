@@ -1,4 +1,8 @@
 data
-img
-images
+img/*/*
+images/
 *.mat
+*.tif
+Thumbs.db
+*.psd
+*.asv

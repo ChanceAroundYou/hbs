@@ -1,4 +1,4 @@
-function [hbs, he, x, y, face, vert, face_center] = HBS(bound, circle_point_num, mesh_density)
+function [x, y] = conformal_welding(bound, circle_point_num, mesh_density)
 % INPUT:
 % bound: n x 1 complex, ANTI-CLOCKWISE boundary points of given shape
 % circle_point_num: int, optional, number of interpolated points when
@@ -9,15 +9,10 @@ function [hbs, he, x, y, face, vert, face_center] = HBS(bound, circle_point_num,
 %               `Mesh.unit_disk_mesh` for more details
 %
 % OUTPUT:
-% hbs: m x 1 complex, the HBS of given shape
-% he: k x 1 complex, the Harmonic extension
 % xq: circle_point_num x 1 complex, x of comformal welding after normalized
 %     and interpolated
 % yq: circle_point_num x 1 complex, y of comformal welding after normalized
 %     and interpolated
-% face: m x 3 real, triangulation connectivity
-% vert: k x 2 real, vertices coordinates
-% face_center: m x 2 real, center points of faces
 
 %%%%%%%%%%%%%%%%%%%% init params
 if nargin == 1

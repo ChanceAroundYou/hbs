@@ -1,22 +1,19 @@
 addpath('./dependencies');
 addpath('./dependencies/im2mesh');
 addpath('./dependencies/mfile');
-% addpath('./dependencies/aco-v1.1/aco');
 close all;
-clear all;
+clear;
 
-fname = 'img/4.jpg';
-disp(fname);
+fname = 'img/fish3.jpg';
 im = Mesh.imread(fname);
 Plot.imshow(im);
 
 % size of image
 [height, width] = size(im);
-boundary_point_num = 200;
-circle_point_num = 1000;
-
 
 %%%%%%% IMPORTANT SETTING %%%%%%%
+boundary_point_num = 200;
+circle_point_num = 1000;
 % the size of unit disk
 % e.g. it means the radius is 50 pixels now.
 unit_disk_radius = 200;
@@ -37,7 +34,7 @@ density = unit_disk_radius;
 bound = Mesh.get_bound(im, boundary_point_num);
 [hbs, he, xq, yq, disk_face, disk_vert, face_center] = HBS(bound, circle_point_num, density);
 Plot.plot_mu(hbs, disk_face, disk_vert);
-Plot.welding_filled(flipud(xq), 1./circshift(yq, 485))
+Plot.welding_filled(flipud(xq), 1./circshift(yq, 485));
 
 % %% Extend HBS from unit disk to rectangle.
 % [extend_face, extend_vert] = Mesh.rect_mesh_from_disk(disk_face, disk_vert, height,width, density, unit_disk_center_x, unit_disk_center_y);
@@ -62,3 +59,7 @@ Plot.welding_filled(flipud(xq), 1./circshift(yq, 485))
 % op = Mesh.mesh_operator(face, vert);
 % hbs_interp_f = op.v2f * hbs_interp_v;
 % Plot.plot_mu(hbs_interp_f, face, vert);
+
+%% Reconstruct shape from HBS
+reconstructed_bound = HBS_reconstruct(hbs, disk_face, disk_vert);
+Plot.scatter(reconstructed_bound);

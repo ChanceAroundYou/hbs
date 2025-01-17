@@ -1,6 +1,6 @@
 # Shape Analysis and Reconstruction Toolkit
 
-This MATLAB toolkit provides functions for analyzing and reconstructing shapes using HBS (Hierarchical Basis Splines) and conformal welding techniques.
+This MATLAB toolkit provides functions for analyzing and reconstructing shapes using Harmonic Beltrami Signature (HBS) and conformal welding techniques.
 
 ## Main Components
 

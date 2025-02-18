@@ -53,30 +53,29 @@ x = flipud(x);
 
 %%%%%%%%%%%%%%%%%%%% normalize phi2
 [y, ~, ~] = Normalization.postnorm_inner(inner_points);
-y = Tools.mobius(y, 0.5*1i, 0);
 
 %[y, ~, ~] = Normalization.postnorm_inner_0to0(inner_points, inner_params);
 
-xqa = (0:circle_interval:2*pi-circle_interval)';
-xq = exp(xqa*1i);
+
 xa = angle(x); 
 [xua, uidx, ~] = unique(xa);
 yu = y(uidx);
 
+xqa = (0:circle_interval:2*pi-circle_interval)';
 x = exp(xqa*1i);
 y = interp1([xua-2*pi;xua;xua+2*pi],[yu;yu;yu],xqa,'linear');
-y = y/y(1);
+y = exp(angle(y/y(1))*1i);
 
 %%%%%%%%%%%%%%%%%%% normalize hbs
 r = 0;
 
 while 1
 xua = mod(xua - r/2, 2*pi);
-yq = interp1([xua-2*pi;xua;xua+2*pi],[yu;yu;yu],xqa,'linear');
-yq = exp(angle(yq/yq(1))*1i);
+y = interp1([xua-2*pi;xua;xua+2*pi],[yu;yu;yu],xqa,'linear');
+y = exp(angle(y/y(1))*1i);
 
-he_inner = Poisson.integral(Tools.real2complex(vert(inner_vert_idx,:)), xq, yq);
-he = [yq;he_inner];
+he_inner = Poisson.integral(Tools.real2complex(vert(inner_vert_idx,:)), x, y);
+he = [y;he_inner];
 hbs = bc_metric(face, vert, Tools.complex2real(he), 2);
 hbs = Tools.mu_chop(hbs, hbs_upper_bound);
 

@@ -1,6 +1,4 @@
 classdef Zipper
-    %ZIPPER �˴���ʾ�йش����ժ҄1�7
-    %   �˴���ʾ��ϸ˵��
     methods(Static)
         function [bound, others, params] = zipper(bound, others)
             if nargin <2
@@ -222,24 +220,24 @@ classdef Zipper
         % % % % % % % % % % % % % % % % % % % % % % % % % % % %
         function d = zipper_inv_d(points, params)
             n = length(params) - 1;
-            dl = zeros(n+1, 1);
+            % dl = zeros(n+1, 1);
             d = Zipper.f_final_inv_d(points);
-            dl(n+1) = angle(d);
+            % dl(n+1) = angle(d);
             points = Zipper.f_final_inv(points);
             d0 = Zipper.f_end_inv_d(points, params(n+1));
             d = d .* d0;
-            dl(n) = angle(d);
+            % dl(n) = angle(d);
             points = Zipper.f_end_inv(points, params(n+1));
             for j=n:-1:3
                 d0 = Zipper.f_inv_d(points, params(j));
                 d = d .* d0;
-                dl(j-1) = angle(d);
+                % dl(j-1) = angle(d);
                 points = Zipper.f_inv(points, params(j));
             end
             d0 = Zipper.f_pre_inv_d(points, params(1), params(2));
-            dl(1) = angle(d);
+            % dl(1) = angle(d);
             d = d .* d0;
-%             d(ori_points==1) = 0;
+            % d(ori_points==1) = 0;
         end
 
         function d = f_pre_inv_d(w, p, q)

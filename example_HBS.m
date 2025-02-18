@@ -16,7 +16,7 @@ boundary_point_num = 200;
 circle_point_num = 1000;
 % the size of unit disk
 % e.g. it means the radius is 50 pixels now.
-unit_disk_radius = 200;
+unit_disk_radius = 100;
 
 % the center of unit disk 
 % e.g. it means the center is (100, 100) now.
@@ -34,7 +34,7 @@ density = unit_disk_radius;
 bound = Mesh.get_bound(im, boundary_point_num);
 [hbs, he, xq, yq, disk_face, disk_vert, face_center] = HBS(bound, circle_point_num, density);
 Plot.plot_mu(hbs, disk_face, disk_vert);
-Plot.welding_filled(flipud(xq), 1./circshift(yq, 485));
+Plot.welding_filled(xq, yq);
 
 % %% Extend HBS from unit disk to rectangle.
 % [extend_face, extend_vert] = Mesh.rect_mesh_from_disk(disk_face, disk_vert, height,width, density, unit_disk_center_x, unit_disk_center_y);

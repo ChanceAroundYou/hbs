@@ -1,6 +1,4 @@
 classdef Tools
-    %TOOLS 此处显示有关此类的摘要
-    %   此处显示详细说明
     methods(Static)
         function norm_value = norm(x, p)
             if nargin == 2 && ~(isreal(p) && all(size(p) == 1))
@@ -17,8 +15,6 @@ classdef Tools
         end
         
         function complex_num = real2complex(real_x, real_y)
-            %TOOLS 构造此类的实例
-            %   此处显示详细说明
             if nargin < 2
                 real_y = real_x(:, 2);
                 real_x = real_x(:, 1);
@@ -27,8 +23,6 @@ classdef Tools
         end
         
         function real_num = complex2real(complex_num)
-            %METHOD1 此处显示有关此方法的摘要
-            %   此处显示详细说明
             real_num = [real(complex_num), imag(complex_num)]; 
         end
         
@@ -165,7 +159,7 @@ classdef Tools
 %                 ally(:,n)=Fx;
                 elseif norm(dx) < eps
                     return
-%                     disp('迭代步数太多，可能不收敛！');
+%                     disp('锟斤拷锟斤拷锟斤拷锟斤拷太锟洁，锟斤拷锟杰诧拷锟斤拷锟斤拷锟斤拷');
 %                     break
                 end
             end
